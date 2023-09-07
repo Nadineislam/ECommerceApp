@@ -1,4 +1,5 @@
 # ECommerceApp
+E-commerce app targets people who are looking to buy high quality furniture products for their house e.g : cupboards, chairs. And it targets merchants that sell furniture products to enable them to spread their markets and put their products online so everyone can check them out and order them.
 
 # Libraries and technologies used
 * Navigation Component : one activity contains multiple fragments instead of creating multiple activites. <br />
