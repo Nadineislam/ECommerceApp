@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable-v24/blue_background.xml" value="0.152" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable-v24/ellips.xml" value="0.152" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable-v24/facebook_login.xml" value="0.152" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable-v24/google_login.xml" value="0.152" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable-v24/ic_kleine_shape.xml" value="0.152" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.152" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/bottom_nav_item_navigation.xml" value="0.167" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/empty_box_background.xml" value="0.132" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/ic_add.xml" value="0.129" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/ic_all_orders.xml" value="0.1505" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/ic_arrow.xml" value="0.1505" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/ic_baseline_close.xml" value="0.1485" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/ic_edit.xml" value="0.1505" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/ic_favorite.xml" value="0.1265" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.152" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/ic_microphone.xml" value="0.1" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/ic_picked.xml" value="0.1525" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/ic_plus.xml" value="0.132" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/ic_texture_left.xml" value="0.162" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/ic_texture_right.xml" value="0.162" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/icon_background.xml" value="0.1" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/drawable/search_box_background.xml" value="0.1" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/font/font.xml" value="0.14322916666666666" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/activity_login_register.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/activity_shopping.xml" value="0.264" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/address_rv_item.xml" value="0.2462962962962963" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/best_deals_rv_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/billing_products_rv_item.xml" value="0.20394736842105263" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/cart_product_item.xml" value="0.264" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/color_rv_item.xml" value="0.4" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_account_options.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_address.xml" value="0.13247863247863248" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_base_category.xml" value="0.253125" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_billing.xml" value="0.128099173553719" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_cart.xml" value="0.12982456140350876" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_home.xml" value="0.19649122807017544" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_introduction.xml" value="0.253125" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_login.xml" value="0.24888888888888888" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_main_category.xml" value="0.253125" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_order_detail.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_orders.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_product_details.xml" value="0.2" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_register.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_search.xml" value="0.12685185185185185" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/fragment_user_account.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/ic_picked.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/order_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/product_rv_item.xml" value="0.1574074074074074" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/reset_password_dialog.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/size_rv_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/special_rv_item.xml" value="0.1" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/layout/viewpager_image_item.xml" value="0.253125" />
+        <entry key="..\:/Users/Shady-stores/AndroidStudioProjects/ECommerceApp/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25416666666666665" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

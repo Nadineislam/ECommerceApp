@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/g_white"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:cardElevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivCart"
+            android:layout_width="80dp"
+            android:layout_height="75dp"
+            android:scaleType="center"
+            android:src="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvCartProductName"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_light"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/ivCart"
+            app:layout_constraintTop_toTopOf="@id/ivCart"
+            tools:text="Chair" />
+
+        <TextView
+            android:id="@+id/tvCartProductPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            app:layout_constraintStart_toEndOf="@id/ivCart"
+            app:layout_constraintStart_toStartOf="@id/tvCartProductName"
+            app:layout_constraintTop_toBottomOf="@id/tvCartProductName"
+            tools:text="77$" />
+
+        <ImageView
+            android:id="@+id/ivMinus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_minus"
+            app:layout_constraintStart_toStartOf="@id/ivPlus"
+            app:layout_constraintBottom_toTopOf="@id/tvProductCartQuantity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+
+            android:id="@+id/tvProductCartQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/ivPlus"
+            app:layout_constraintEnd_toEndOf="@id/ivMinus"
+            app:layout_constraintStart_toStartOf="@id/ivMinus"
+            app:layout_constraintTop_toBottomOf="@id/ivMinus"
+            tools:text="33" />
+
+        <ImageView
+            android:id="@+id/ivPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_plus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvProductCartQuantity"
+            app:layout_constraintStart_toStartOf="@id/tvProductCartQuantity"
+            app:layout_constraintTop_toBottomOf="@id/tvProductCartQuantity"
+            tools:ignore="ContentDescription" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivCartProductColor"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_margin="5dp"
+            android:src="@color/g_blue"
+            app:layout_constraintStart_toEndOf="@id/ivCart"
+            app:layout_constraintTop_toBottomOf="@id/tvCartProductPrice" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivCartProductSize"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginHorizontal="10dp"
+            android:src="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/ivCartProductColor"
+            app:layout_constraintStart_toEndOf="@id/ivCartProductColor"
+            app:layout_constraintTop_toBottomOf="@id/tvCartProductPrice"
+            app:layout_constraintTop_toTopOf="@id/ivCartProductColor" />
+
+        <TextView
+            android:id="@+id/tvCartProductSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/ivCartProductSize"
+            app:layout_constraintEnd_toEndOf="@id/ivCartProductSize"
+            app:layout_constraintStart_toStartOf="@id/ivCartProductSize"
+            app:layout_constraintTop_toTopOf="@id/ivCartProductSize"
+            tools:text="M" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

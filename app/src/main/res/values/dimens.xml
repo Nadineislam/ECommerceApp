@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tvRightAddressMargin">115dp</dimen>
+    <dimen name="buttonCorners">5dp</dimen>
+    <dimen name="buttonWidth">150dp</dimen>
+    <dimen name="editTextHeight">60dp</dimen>
+    <dimen name="FrameMarginStart">10dp</dimen>
+
+</resources>
