@@ -1,9 +1,9 @@
-package com.example.ecommerceapp.presentation.viewmodel
+package com.example.ecommerceapp.loginRegister.peresentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ecommerceapp.data.User
-import com.example.ecommerceapp.data.repository.LoginRegisterRepository
+import com.example.ecommerceapp.loginRegister.data.model.User
+import com.example.ecommerceapp.loginRegister.data.repository.LoginRegisterRepository
 import com.example.ecommerceapp.utils.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel

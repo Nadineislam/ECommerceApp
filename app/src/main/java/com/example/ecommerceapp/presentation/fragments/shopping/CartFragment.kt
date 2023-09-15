@@ -19,6 +19,7 @@ import com.example.ecommerceapp.utils.Resource
 import com.example.ecommerceapp.utils.VerticalItemDecoration
 import com.example.ecommerceapp.presentation.viewmodel.CartViewModel
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class CartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
@@ -41,7 +42,7 @@ class CartFragment : Fragment() {
         cartAdapter.onPlusClick={
            viewModel.changeQuantity(it,FirebaseCommon.QuantityChanges.INCREASE)
         }
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.deleteDialog.collectLatest {
                 val alertDialog=AlertDialog.Builder(requireContext()).apply {
                     setTitle("Delete item from cart")
@@ -68,7 +69,7 @@ class CartFragment : Fragment() {
             val bundle=Bundle().apply { putParcelable("product",it.product) }
             findNavController().navigate(R.id.action_cartFragment_to_productDetailsFragment,bundle)
         }
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.productPrice.collectLatest {price->
                 price?.let {
                     totalPrice=it
@@ -83,7 +84,7 @@ class CartFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.cartProducts.collectLatest {
                 when (it) {
                     is Resource.Loading -> {

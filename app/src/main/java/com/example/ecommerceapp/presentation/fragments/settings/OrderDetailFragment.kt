@@ -22,7 +22,7 @@ class OrderDetailFragment:Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding=FragmentOrderDetailBinding.inflate(inflater)
         return binding.root
     }

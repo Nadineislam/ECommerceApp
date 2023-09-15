@@ -1,6 +1,6 @@
-package com.example.ecommerceapp.data.repository
+package com.example.ecommerceapp.loginRegister.data.repository
 
-import com.example.ecommerceapp.data.User
+import com.example.ecommerceapp.loginRegister.data.model.User
 import com.example.ecommerceapp.utils.Constants.USER_COLLECTION
 import com.example.ecommerceapp.utils.Resource
 import com.google.firebase.auth.FirebaseAuth

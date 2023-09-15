@@ -7,7 +7,7 @@ import android.provider.MediaStore
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ecommerceapp.CommerceApplication
-import com.example.ecommerceapp.data.User
+import com.example.ecommerceapp.loginRegister.data.model.User
 import com.example.ecommerceapp.utils.RegisterValidation
 import com.example.ecommerceapp.utils.Resource
 import com.example.ecommerceapp.utils.validateEmail

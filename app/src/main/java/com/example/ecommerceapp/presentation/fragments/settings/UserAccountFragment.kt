@@ -16,12 +16,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.ecommerceapp.data.User
+import com.example.ecommerceapp.loginRegister.data.model.User
 import com.example.ecommerceapp.databinding.FragmentUserAccountBinding
 import com.example.ecommerceapp.utils.Resource
 import com.example.ecommerceapp.presentation.viewmodel.UserAccountViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class UserAccountFragment : Fragment() {
@@ -49,7 +50,7 @@ class UserAccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             userAccountViewModel.user.collectLatest {
                 when (it) {
                     is Resource.Loading -> {
@@ -68,7 +69,7 @@ class UserAccountFragment : Fragment() {
                 }
             }
         }
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch{
             userAccountViewModel.updateInfo.collectLatest {
                 when (it) {
                     is Resource.Loading -> {

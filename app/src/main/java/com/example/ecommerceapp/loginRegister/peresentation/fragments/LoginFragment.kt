@@ -1,4 +1,4 @@
-package com.example.ecommerceapp.presentation.fragments.loginRegister
+package com.example.ecommerceapp.loginRegister.peresentation.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,11 +13,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.ecommerceapp.R
 import com.example.ecommerceapp.presentation.activities.ShoppingActivity
 import com.example.ecommerceapp.databinding.FragmentLoginBinding
-import com.example.ecommerceapp.dialog.setupBottomSheetDialog
+import com.example.ecommerceapp.loginRegister.dialog.setupBottomSheetDialog
 import com.example.ecommerceapp.utils.Resource
-import com.example.ecommerceapp.presentation.viewmodel.LoginViewModel
+import com.example.ecommerceapp.loginRegister.peresentation.viewmodels.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -51,7 +52,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 viewModel.resetPassword(email)
             }
         }
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.resetPassword.collect {
                 when (it) {
                     is Resource.Loading -> {
@@ -72,7 +73,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 }
             }
         }
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.login.collect {
                 when (it) {
                     is Resource.Loading -> {

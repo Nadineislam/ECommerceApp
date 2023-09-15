@@ -23,6 +23,7 @@ import com.example.ecommerceapp.utils.showBottomNavigationView
 import com.example.ecommerceapp.presentation.viewmodel.MainCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
@@ -57,7 +58,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
             val bundle = Bundle().apply { putParcelable("product", product) }
             findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, bundle)
         }
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.specialProducts.collectLatest {
                 when (it) {
                     is Resource.Loading -> {
@@ -75,7 +76,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                 }
             }
         }
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.bestDealsProducts.collectLatest {
                 when (it) {
                     is Resource.Loading -> {
@@ -93,7 +94,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                 }
             }
         }
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch{
             viewModel.bestProducts.collectLatest {
                 when (it) {
                     is Resource.Loading -> {

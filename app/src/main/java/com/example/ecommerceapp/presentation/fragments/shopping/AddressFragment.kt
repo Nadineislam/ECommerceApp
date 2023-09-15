@@ -10,17 +10,20 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.navigateUp
 import com.example.ecommerceapp.data.Address
 import com.example.ecommerceapp.databinding.FragmentAddressBinding
 import com.example.ecommerceapp.utils.Resource
 import com.example.ecommerceapp.presentation.viewmodel.AddressViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+
 @AndroidEntryPoint
 class AddressFragment:Fragment() {
     private lateinit var binding:FragmentAddressBinding
     private val viewModel by viewModels<AddressViewModel>()
-    val args by navArgs<AddressFragmentArgs>()
+    private val args by navArgs<AddressFragmentArgs>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,8 +33,9 @@ class AddressFragment:Fragment() {
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val address=args.address
         if(address==null){
             binding.btnDelete.visibility=View.GONE
@@ -46,7 +50,7 @@ class AddressFragment:Fragment() {
                 edPhone.setText(address.phone)
             }
         }
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.addNewAddress.collectLatest {
                 when(it){
                     is Resource.Loading->{
@@ -64,15 +68,14 @@ class AddressFragment:Fragment() {
                 }
             }
         }
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.error.collectLatest {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        binding.imageAddressClose.setOnClickListener {
+            findNavController().navigateUp()
+        }
        binding.apply {
            buttonSave.setOnClickListener {
                val addressTitle=edAddressTitle.text.toString()

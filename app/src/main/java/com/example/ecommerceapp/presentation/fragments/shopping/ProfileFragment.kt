@@ -15,23 +15,25 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.ecommerceapp.BuildConfig
 import com.example.ecommerceapp.R
-import com.example.ecommerceapp.presentation.activities.LoginRegisterActivity
 import com.example.ecommerceapp.databinding.FragmentProfileBinding
+import com.example.ecommerceapp.loginRegister.peresentation.activity.LoginRegisterActivity
+import com.example.ecommerceapp.presentation.viewmodel.ProfileViewModel
 import com.example.ecommerceapp.utils.Resource
 import com.example.ecommerceapp.utils.showBottomNavigationView
-import com.example.ecommerceapp.presentation.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+
 @AndroidEntryPoint
-class ProfileFragment:Fragment() {
-    private lateinit var binding:FragmentProfileBinding
+class ProfileFragment : Fragment() {
+    private lateinit var binding: FragmentProfileBinding
     private val profileViewModel by viewModels<ProfileViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding=FragmentProfileBinding.inflate(inflater)
+        binding = FragmentProfileBinding.inflate(inflater)
         return binding.root
     }
 
@@ -44,33 +46,40 @@ class ProfileFragment:Fragment() {
             findNavController().navigate(R.id.action_profileFragment_to_ordersFragment2)
         }
         binding.linearBilling.setOnClickListener {
-            val action=ProfileFragmentDirections.actionProfileFragmentToBillingFragment(0f,
-                emptyArray(),false)
+            val action = ProfileFragmentDirections.actionProfileFragmentToBillingFragment(
+                0f,
+                emptyArray(), false
+            )
             findNavController().navigate(action)
         }
         binding.linearLogOut.setOnClickListener {
             profileViewModel.logOut()
-            val intent=Intent(requireActivity(),LoginRegisterActivity::class.java)
+            val intent = Intent(requireActivity(), LoginRegisterActivity::class.java)
             startActivity(intent)
             requireActivity().finish()
         }
-        binding.tvVersion.text="Version ${BuildConfig.VERSION_CODE}"
-        lifecycleScope.launchWhenStarted {
+
+        binding.tvVersion.text = "Version ${BuildConfig.VERSION_CODE}"
+        lifecycleScope.launch {
             profileViewModel.user.collectLatest {
                 when (it) {
                     is Resource.Loading -> {
-                        binding.progressbarSettings.visibility=View.VISIBLE
+                        binding.progressbarSettings.visibility = View.VISIBLE
                     }
+
                     is Resource.Success -> {
-                        binding.progressbarSettings.visibility=View.INVISIBLE
-                        Glide.with(requireView()).load(it.data!!.imagePath).error(ColorDrawable(Color.BLACK)).into(binding.imageUser)
-                        binding.tvUserName.text="${it.data.firstName}  ${it.data.lastName}"
+                        binding.progressbarSettings.visibility = View.INVISIBLE
+                        Glide.with(requireView()).load(it.data!!.imagePath)
+                            .error(ColorDrawable(Color.BLACK)).into(binding.imageUser)
+                        binding.tvUserName.text = "${it.data.firstName} ${it.data.lastName}"
 
                     }
+
                     is Resource.Error -> {
-                        binding.progressbarSettings.visibility=View.INVISIBLE
+                        binding.progressbarSettings.visibility = View.INVISIBLE
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     }
+
                     else -> Unit
                 }
             }

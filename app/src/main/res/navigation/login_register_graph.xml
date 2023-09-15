@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.ecommerceapp.presentation.fragments.loginRegister.LoginFragment"
+        android:name="com.example.ecommerceapp.loginRegister.peresentation.fragments.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login"
         >
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.ecommerceapp.presentation.fragments.loginRegister.RegisterFragment"
+        android:name="com.example.ecommerceapp.loginRegister.peresentation.fragments.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register">
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/introductionFragment"
-        android:name="com.example.ecommerceapp.presentation.fragments.loginRegister.IntroductionFragment"
+        android:name="com.example.ecommerceapp.loginRegister.peresentation.fragments.IntroductionFragment"
         android:label="IntroductionFragment"
         tools:layout="@layout/fragment_introduction">
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/accountOptionsFragment"
-        android:name="com.example.ecommerceapp.presentation.fragments.loginRegister.AccountOptionsFragment"
+        android:name="com.example.ecommerceapp.loginRegister.peresentation.fragments.AccountOptionsFragment"
         android:label="AccountOptionsFragment"
         tools:layout="@layout/fragment_account_options">
         <action

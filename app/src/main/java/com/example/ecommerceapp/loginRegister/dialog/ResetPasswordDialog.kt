@@ -1,4 +1,4 @@
-package com.example.ecommerceapp.dialog
+package com.example.ecommerceapp.loginRegister.dialog
 
 import android.widget.Button
 import android.widget.EditText

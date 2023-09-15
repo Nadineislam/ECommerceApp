@@ -1,4 +1,4 @@
-package com.example.ecommerceapp.presentation.fragments.loginRegister
+package com.example.ecommerceapp.loginRegister.peresentation.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,13 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.ecommerceapp.presentation.viewmodel.IntroductionViewModel
+import com.example.ecommerceapp.loginRegister.peresentation.viewmodels.IntroductionViewModel
 import com.example.ecommerceapp.R
 import com.example.ecommerceapp.presentation.activities.ShoppingActivity
 import com.example.ecommerceapp.databinding.FragmentIntroductionBinding
-import com.example.ecommerceapp.presentation.viewmodel.IntroductionViewModel.Companion.ACCOUNT_OPTIONS_FRAGMENT
-import com.example.ecommerceapp.presentation.viewmodel.IntroductionViewModel.Companion.SHOPPING_ACTIVITY
+import com.example.ecommerceapp.loginRegister.peresentation.viewmodels.IntroductionViewModel.Companion.ACCOUNT_OPTIONS_FRAGMENT
+import com.example.ecommerceapp.loginRegister.peresentation.viewmodels.IntroductionViewModel.Companion.SHOPPING_ACTIVITY
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class IntroductionFragment : Fragment(R.layout.fragment_introduction) {
@@ -32,7 +33,7 @@ class IntroductionFragment : Fragment(R.layout.fragment_introduction) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.navigate.collect {
                 when (it) {
                     SHOPPING_ACTIVITY ->{

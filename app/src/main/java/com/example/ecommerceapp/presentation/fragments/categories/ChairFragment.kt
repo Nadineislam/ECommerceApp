@@ -12,18 +12,19 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 @AndroidEntryPoint
 class ChairFragment:BaseCategoryFragment() {
     @Inject
-    lateinit var firestore: FirebaseFirestore
+    lateinit var fireStore: FirebaseFirestore
 
     private val viewModel by viewModels<CategoryViewModel> {
-        CategoryViewModelFactory(firestore,Category.Chair)
+        CategoryViewModelFactory(fireStore,Category.Chair)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.offerProducts.collectLatest {
                 when(it){
                     is Resource.Loading->{}
@@ -38,7 +39,7 @@ class ChairFragment:BaseCategoryFragment() {
 
             }
         }
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.bestProducts.collectLatest {
                 when(it){
                     is Resource.Loading->{}

@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.ecommerceapp.R
 import com.example.ecommerceapp.presentation.adapters.ColorsAdapter
 import com.example.ecommerceapp.presentation.adapters.SizesAdapter
 import com.example.ecommerceapp.presentation.adapters.ViewPager2ImagesAdapter
@@ -21,15 +22,17 @@ import com.example.ecommerceapp.utils.hideBottomNavigationView
 import com.example.ecommerceapp.presentation.viewmodel.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+
 @AndroidEntryPoint
-class ProductDetailsFragment:Fragment() {
+class ProductDetailsFragment : Fragment() {
     private val args by navArgs<ProductDetailsFragmentArgs>()
-    private lateinit var binding:FragmentProductDetailsBinding
-    private val viewPager2Adapter:ViewPager2ImagesAdapter by lazy { ViewPager2ImagesAdapter() }
-    private val sizesAdapter:SizesAdapter by lazy { SizesAdapter() }
+    private lateinit var binding: FragmentProductDetailsBinding
+    private val viewPager2Adapter: ViewPager2ImagesAdapter by lazy { ViewPager2ImagesAdapter() }
+    private val sizesAdapter: SizesAdapter by lazy { SizesAdapter() }
     private val colorsAdapter: ColorsAdapter by lazy { ColorsAdapter() }
-    private var selectedColor:Int?=null
-    private var selectedSize:String?=null
+    private var selectedColor: Int? = null
+    private var selectedSize: String? = null
     private val viewModel by viewModels<DetailsViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,27 +40,41 @@ class ProductDetailsFragment:Fragment() {
         savedInstanceState: Bundle?
     ): View {
         hideBottomNavigationView()
-         binding=FragmentProductDetailsBinding.inflate(inflater)
+        binding = FragmentProductDetailsBinding.inflate(inflater)
         return binding.root
 
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val product=args.product
-        sizesAdapter.onItemClick={selectedSize=it}
-        colorsAdapter.onItemClick={selectedColor=it}
-        binding.btnAddToCart.setOnClickListener{
-            viewModel.addUpdateCartProducts(CartProduct( product,1,selectedColor,selectedSize))
+        val product = args.product
+        sizesAdapter.onItemClick = { selectedSize = it }
+        colorsAdapter.onItemClick = { selectedColor = it }
+        binding.btnAddToCart.setOnClickListener {
+            viewModel.addUpdateCartProducts(CartProduct(product, 1, selectedColor, selectedSize))
         }
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.addToCart.collectLatest {
-                when(it){
-                    is Resource.Loading->{binding.btnAddToCart.startAnimation()}
-                    is Resource.Success->{binding.btnAddToCart.revertAnimation()
-                        Toast.makeText(requireContext(), "Item added successfully", Toast.LENGTH_SHORT).show()}
-                    is Resource.Error->{binding.btnAddToCart.revertAnimation()
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()}
-                    else->Unit
+                when (it) {
+                    is Resource.Loading -> {
+                        binding.btnAddToCart.startAnimation()
+                    }
+
+                    is Resource.Success -> {
+                        binding.btnAddToCart.revertAnimation()
+                        Toast.makeText(
+                            requireContext(),
+                            "Item added successfully",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    is Resource.Error -> {
+                        binding.btnAddToCart.revertAnimation()
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    }
+
+                    else -> Unit
                 }
             }
         }
@@ -65,14 +82,14 @@ class ProductDetailsFragment:Fragment() {
         setUpSizesRv()
         setUpViewPager2Rv()
         binding.apply {
-            tvProductDetailsName.text=product.name
-            tvProductDetailsDesc.text=product.description
-            tvProductDetailsPrice.text="$ ${product.price}"
-            if(product.colors.isNullOrEmpty())
-                tvProductDetailsColor.visibility=View.INVISIBLE
+            tvProductDetailsName.text = product.name
+            tvProductDetailsDesc.text = product.description
+            tvProductDetailsPrice.text = "$ ${product.price}"
+            if (product.colors.isNullOrEmpty())
+                tvProductDetailsColor.visibility = View.INVISIBLE
 
-            if(product.sizes.isNullOrEmpty())
-                tvProductDetailsSize.visibility=View.INVISIBLE
+            if (product.sizes.isNullOrEmpty())
+                tvProductDetailsSize.visibility = View.INVISIBLE
 
 
         }
@@ -91,22 +108,27 @@ class ProductDetailsFragment:Fragment() {
 
     private fun setUpColorsRv() {
         binding.rvColors.apply {
-            layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-            adapter=colorsAdapter
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = colorsAdapter
         }
-        }
+    }
+
     private fun setUpSizesRv() {
         binding.rvSizes.apply {
-            layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-            adapter=sizesAdapter
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = sizesAdapter
         }
     }
+
     private fun setUpViewPager2Rv() {
         binding.apply {
-            viewPagerProductImages.adapter=viewPager2Adapter}
+            viewPagerProductImages.adapter = viewPager2Adapter
+        }
 
     }
-    }
+}
 
 
 

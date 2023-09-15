@@ -1,4 +1,4 @@
-package com.example.ecommerceapp.presentation.fragments.loginRegister
+package com.example.ecommerceapp.loginRegister.peresentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

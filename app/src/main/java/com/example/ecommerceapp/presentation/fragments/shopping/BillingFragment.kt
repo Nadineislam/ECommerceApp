@@ -28,6 +28,7 @@ import com.example.ecommerceapp.presentation.viewmodel.OrderViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class BillingFragment : Fragment() {
@@ -91,7 +92,7 @@ class BillingFragment : Fragment() {
         binding.imageAddAddress.setOnClickListener {
             findNavController().navigate(R.id.action_billingFragment_to_addressFragment)
         }
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             billingViewModel.address.collectLatest {
                 when (it) {
                     is Resource.Loading -> {
@@ -109,7 +110,7 @@ class BillingFragment : Fragment() {
                 }
             }
         }
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             orderViewModel.order.collectLatest {
                 when (it) {
                     is Resource.Loading -> {

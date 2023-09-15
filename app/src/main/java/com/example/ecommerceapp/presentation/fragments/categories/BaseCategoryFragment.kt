@@ -51,9 +51,6 @@ open class BaseCategoryFragment:Fragment(R.layout.fragment_base_category) {
 //
 //        })
     }
-    open fun onOfferProductsPagingRequest(){}
-
-    open fun onBestProductsPagingRequest(){}
 
     private fun setUpBestProductsRV() {
         binding.rvBestProducts.apply {

@@ -1,8 +1,8 @@
-package com.example.ecommerceapp.presentation.viewmodel
+package com.example.ecommerceapp.loginRegister.peresentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ecommerceapp.data.repository.LoginRegisterRepository
+import com.example.ecommerceapp.loginRegister.data.repository.LoginRegisterRepository
 import com.example.ecommerceapp.utils.Resource
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel

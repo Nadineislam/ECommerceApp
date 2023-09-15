@@ -22,7 +22,7 @@ class HomeFragment :Fragment(){
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-val categoriesFragment= arrayListOf<Fragment>(
+val categoriesFragment= arrayListOf(
     MainCategoryFragment(),
     TableFragment(),
 FurnitureFragment(), CupboardFragment(),ChairFragment(),AccessoryFragment()

@@ -1,4 +1,4 @@
-package com.example.ecommerceapp.presentation.viewmodel
+package com.example.ecommerceapp.loginRegister.peresentation.viewmodels
 
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel

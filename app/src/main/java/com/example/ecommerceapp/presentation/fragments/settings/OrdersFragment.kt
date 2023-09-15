@@ -16,6 +16,7 @@ import com.example.ecommerceapp.utils.Resource
 import com.example.ecommerceapp.presentation.viewmodel.AllOrdersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class OrdersFragment :Fragment(){
@@ -37,7 +38,7 @@ class OrdersFragment :Fragment(){
         binding.imageCloseOrders.setOnClickListener {
             findNavController().navigateUp()
         }
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             ordersViewModel.allOrders.collectLatest {
                 when(it){
                     is Resource.Loading -> {
