@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.ecommerceapp.data.Category
+import com.example.ecommerceapp.data.repository.ShoppingRepository
 import com.example.ecommerceapp.utils.Resource
 import com.example.ecommerceapp.presentation.viewmodel.CategoryViewModel
 import com.example.ecommerceapp.presentation.viewmodel.CategoryViewModelFactory
@@ -20,9 +21,9 @@ import javax.inject.Inject
 class CupboardFragment:BaseCategoryFragment() {
     @Inject
     lateinit var fireStore: FirebaseFirestore
-
+    private val shoppingRepository:ShoppingRepository by lazy { ShoppingRepository(fireStore) }
     private val viewModel by viewModels<CategoryViewModel> {
-        CategoryViewModelFactory(fireStore, Category.Cupboard)
+        CategoryViewModelFactory(fireStore, Category.Cupboard,shoppingRepository)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
