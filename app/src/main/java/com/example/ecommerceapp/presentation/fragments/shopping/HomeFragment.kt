@@ -34,11 +34,11 @@ FurnitureFragment(), CupboardFragment(),ChairFragment(),AccessoryFragment()
         TabLayoutMediator(binding.tabLayout,binding.viewPager){tab , position->
             when(position){
                 0 -> tab.text ="Main"
-                1-> tab.text="Accessory"
+                1-> tab.text="Furniture"
                 2-> tab.text="Table"
                 3->tab.text="Cupboard"
                 4-> tab.text="Chair"
-                5-> tab.text="Furniture"
+                5-> tab.text="Accessory"
 
             }
 
