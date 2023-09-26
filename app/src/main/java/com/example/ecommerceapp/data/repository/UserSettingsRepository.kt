@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import android.provider.MediaStore
+import com.example.ecommerceapp.data.Address
 import com.example.ecommerceapp.loginRegister.data.model.User
 import com.example.ecommerceapp.utils.RegisterValidation
 import com.example.ecommerceapp.utils.Resource
@@ -79,6 +80,11 @@ class UserSettingsRepository @Inject constructor(
                 user
             }
         }.await()
+    }
+    suspend fun addAddress(address: Address) {
+        val userAddressCollection = fireStore.collection("user").document(auth.uid!!)
+            .collection("address")
+        userAddressCollection.add(address).await()
     }
 
 }

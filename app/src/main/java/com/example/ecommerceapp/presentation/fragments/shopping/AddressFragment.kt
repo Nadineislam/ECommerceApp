@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.ui.navigateUp
 import com.example.ecommerceapp.data.Address
 import com.example.ecommerceapp.databinding.FragmentAddressBinding
 import com.example.ecommerceapp.utils.Resource
