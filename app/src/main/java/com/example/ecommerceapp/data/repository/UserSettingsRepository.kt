@@ -53,6 +53,15 @@ class UserSettingsRepository @Inject constructor(
         }
     }
 
+    suspend fun getUser(userId: String): User {
+        val documentSnapshot = fireStore.collection("user").document(userId).get().await()
+        return documentSnapshot.toObject(User::class.java)!!
+    }
+
+    fun logOut() {
+        auth.signOut()
+    }
+
     private suspend fun saveUserInformationWithNewImage(user: User, imageUri: Uri): User {
         val imageBitmap = MediaStore.Images.Media.getBitmap(
             context.contentResolver,
@@ -81,6 +90,7 @@ class UserSettingsRepository @Inject constructor(
             }
         }.await()
     }
+
     suspend fun addAddress(address: Address) {
         val userAddressCollection = fireStore.collection("user").document(auth.uid!!)
             .collection("address")
