@@ -58,8 +58,6 @@ class UserAccountFragment : Fragment() {
                     }
                     is Resource.Success -> {
                         hideUserLoading()
-                        showUserInformation(it.data!!)
-
                     }
                     is Resource.Error -> {
                         hideUserLoading()

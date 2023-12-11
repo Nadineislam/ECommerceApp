@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ecommerceapp.R
 import com.example.ecommerceapp.presentation.adapters.ColorsAdapter
 import com.example.ecommerceapp.presentation.adapters.SizesAdapter
 import com.example.ecommerceapp.presentation.adapters.ViewPager2ImagesAdapter

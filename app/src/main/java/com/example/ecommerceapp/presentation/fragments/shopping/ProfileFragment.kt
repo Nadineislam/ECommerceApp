@@ -77,7 +77,6 @@ class ProfileFragment : Fragment() {
 
                     is Resource.Error -> {
                         binding.progressbarSettings.visibility = View.INVISIBLE
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     }
 
                     else -> Unit

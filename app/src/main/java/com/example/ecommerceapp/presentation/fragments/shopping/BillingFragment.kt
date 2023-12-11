@@ -104,7 +104,7 @@ class BillingFragment : Fragment() {
                     }
                     is Resource.Success -> {
                         binding.progressbarAddress.visibility = View.GONE
-                        addressAdapter.differList.submitList(it.data!!)
+                        addressAdapter.differList.submitList(it.data)
                     }
                     else -> Unit
                 }

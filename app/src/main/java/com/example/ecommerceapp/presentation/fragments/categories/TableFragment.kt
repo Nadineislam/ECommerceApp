@@ -10,6 +10,7 @@ import com.example.ecommerceapp.presentation.viewmodel.CategoryViewModel
 import com.example.ecommerceapp.presentation.viewmodel.CategoryViewModelFactory
 import com.example.ecommerceapp.utils.Resource
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -20,7 +21,9 @@ import javax.inject.Inject
 class TableFragment:BaseCategoryFragment() {
     @Inject
     lateinit var fireStore: FirebaseFirestore
-    private val shoppingRepository: ShoppingRepository by lazy { ShoppingRepository(fireStore) }
+    @Inject
+    lateinit var auth: FirebaseAuth
+    private val shoppingRepository: ShoppingRepository by lazy { ShoppingRepository(fireStore,auth) }
     private val viewModel by viewModels<CategoryViewModel> {
         CategoryViewModelFactory(fireStore, Category.Table, shoppingRepository)
     }
