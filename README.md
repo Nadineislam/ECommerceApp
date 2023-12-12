@@ -14,3 +14,4 @@ E-commerce app targets people who are looking to buy high quality furniture prod
 * Coroutines : do some code in the background. <br />
 * View Binding : instead of inflating views manually view binding will take care of that. <br />
 * Glide : Catch images and load them in imageView. <br />
+* Dependency Injection: Managing object dependencies and providing them to classes that require them, promoting code reusability and decoupling. <br />
