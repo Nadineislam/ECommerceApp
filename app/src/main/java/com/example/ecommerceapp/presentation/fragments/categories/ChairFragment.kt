@@ -3,7 +3,9 @@ package com.example.ecommerceapp.presentation.fragments.categories
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.ecommerceapp.data.Category
 import com.example.ecommerceapp.data.repository.ShoppingRepository
 import com.example.ecommerceapp.utils.Resource
@@ -21,49 +23,67 @@ import javax.inject.Inject
 class ChairFragment : BaseCategoryFragment() {
     @Inject
     lateinit var fireStore: FirebaseFirestore
+
     @Inject
     lateinit var auth: FirebaseAuth
-    private val shoppingRepository:ShoppingRepository by lazy { ShoppingRepository(fireStore,auth) }
+    private val shoppingRepository: ShoppingRepository by lazy {
+        ShoppingRepository(
+            fireStore,
+            auth
+        )
+    }
     private val viewModel by viewModels<CategoryViewModel> {
         CategoryViewModelFactory(fireStore, Category.Chair, shoppingRepository)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launch {
-            viewModel.offerProducts.collectLatest {
-                when (it) {
-                    is Resource.Loading -> {}
-                    is Resource.Success -> {
-                        offerAdapter.differList.submitList(it.data)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.offerProducts.collectLatest {
+                    when (it) {
+                        is Resource.Loading -> {}
+                        is Resource.Success -> {
+                            offerAdapter.differList.submitList(it.data)
+                        }
+
+                        is Resource.Error -> {
+                            Snackbar.make(
+                                requireView(),
+                                it.message.toString(),
+                                Snackbar.LENGTH_LONG
+                            )
+                                .show()
+                        }
+
+                        else -> Unit
                     }
 
-                    is Resource.Error -> {
-                        Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_LONG)
-                            .show()
-                    }
-
-                    else -> Unit
                 }
-
             }
         }
-        lifecycleScope.launch {
-            viewModel.bestProducts.collectLatest {
-                when (it) {
-                    is Resource.Loading -> {}
-                    is Resource.Success -> {
-                        bestProductsAdapter.differList.submitList(it.data)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.bestProducts.collectLatest {
+                    when (it) {
+                        is Resource.Loading -> {}
+                        is Resource.Success -> {
+                            bestProductsAdapter.differList.submitList(it.data)
+                        }
+
+                        is Resource.Error -> {
+                            Snackbar.make(
+                                requireView(),
+                                it.message.toString(),
+                                Snackbar.LENGTH_LONG
+                            )
+                                .show()
+                        }
+
+                        else -> Unit
                     }
 
-                    is Resource.Error -> {
-                        Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_LONG)
-                            .show()
-                    }
-
-                    else -> Unit
                 }
-
             }
         }
     }

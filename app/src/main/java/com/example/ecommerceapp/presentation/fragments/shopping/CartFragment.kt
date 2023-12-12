@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ecommerceapp.R
@@ -37,50 +39,54 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpCartRv()
-        var totalPrice=0f
+        var totalPrice = 0f
 
-        cartAdapter.onPlusClick={
-           viewModel.changeQuantity(it,FirebaseCommon.QuantityChanges.INCREASE)
+        cartAdapter.onPlusClick = {
+            viewModel.changeQuantity(it, FirebaseCommon.QuantityChanges.INCREASE)
         }
-        lifecycleScope.launch {
-            viewModel.deleteDialog.collectLatest {
-                val alertDialog=AlertDialog.Builder(requireContext()).apply {
-                    setTitle("Delete item from cart")
-                    setMessage("Do you want to delete this item from cart?")
-                    setNegativeButton("cancel"){dialog,_ ->
-                        dialog.dismiss()
-                    }
-                    setPositiveButton("Yes"){dialog,_ ->
-                        viewModel.deleteCartProduct(it)
-                        dialog.dismiss()
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.deleteDialog.collectLatest {
+                    val alertDialog = AlertDialog.Builder(requireContext()).apply {
+                        setTitle("Delete item from cart")
+                        setMessage("Do you want to delete this item from cart?")
+                        setNegativeButton("cancel") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        setPositiveButton("Yes") { dialog, _ ->
+                            viewModel.deleteCartProduct(it)
+                            dialog.dismiss()
 
 
+                        }
                     }
+                    alertDialog.create()
+                    alertDialog.show()
+
                 }
-                alertDialog.create()
-                alertDialog.show()
-
             }
         }
-        cartAdapter.onMinusClick={
-            viewModel.changeQuantity(it,FirebaseCommon.QuantityChanges.DECREASE)
+        cartAdapter.onMinusClick = {
+            viewModel.changeQuantity(it, FirebaseCommon.QuantityChanges.DECREASE)
         }
-        cartAdapter.onProductClick={
-            val bundle=Bundle().apply { putParcelable("product",it.product) }
-            findNavController().navigate(R.id.action_cartFragment_to_productDetailsFragment,bundle)
+        cartAdapter.onProductClick = {
+            val bundle = Bundle().apply { putParcelable("product", it.product) }
+            findNavController().navigate(R.id.action_cartFragment_to_productDetailsFragment, bundle)
         }
         lifecycleScope.launch {
-            viewModel.productPrice.collectLatest {price->
+            viewModel.productPrice.collectLatest { price ->
                 price?.let {
-                    totalPrice=it
-                    binding.tvCartTotalPrice.text="$ $price"
+                    totalPrice = it
+                    binding.tvCartTotalPrice.text = "$ $price"
                 }
 
             }
         }
         binding.btnCheckout.setOnClickListener {
-            val action=CartFragmentDirections.actionCartFragmentToBillingFragment(totalPrice,cartAdapter.differList.currentList.toTypedArray(),
-                true)
+            val action = CartFragmentDirections.actionCartFragmentToBillingFragment(
+                totalPrice, cartAdapter.differList.currentList.toTypedArray(),
+                true
+            )
             findNavController().navigate(action)
         }
 
@@ -90,6 +96,7 @@ class CartFragment : Fragment() {
                     is Resource.Loading -> {
                         binding.progressBarCart.visibility = View.VISIBLE
                     }
+
                     is Resource.Success -> {
                         binding.progressBarCart.visibility = View.INVISIBLE
                         if (it.data!!.isEmpty()) {
@@ -101,10 +108,12 @@ class CartFragment : Fragment() {
                             cartAdapter.differList.submitList(it.data)
                         }
                     }
+
                     is Resource.Error -> {
                         binding.progressBarCart.visibility = View.INVISIBLE
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     }
+
                     else -> Unit
                 }
             }
@@ -113,17 +122,17 @@ class CartFragment : Fragment() {
 
     private fun showOtherViews() {
         binding.apply {
-            totalBoxContainer.visibility=View.VISIBLE
-            rvCart.visibility=View.VISIBLE
-            btnCheckout.visibility=View.VISIBLE
+            totalBoxContainer.visibility = View.VISIBLE
+            rvCart.visibility = View.VISIBLE
+            btnCheckout.visibility = View.VISIBLE
         }
     }
 
     private fun hideOtherViews() {
         binding.apply {
-            totalBoxContainer.visibility=View.GONE
-            rvCart.visibility=View.GONE
-            btnCheckout.visibility=View.GONE
+            totalBoxContainer.visibility = View.GONE
+            rvCart.visibility = View.GONE
+            btnCheckout.visibility = View.GONE
         }
     }
 

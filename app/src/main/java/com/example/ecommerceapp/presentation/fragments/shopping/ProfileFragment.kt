@@ -7,10 +7,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.ecommerceapp.BuildConfig
@@ -60,26 +61,28 @@ class ProfileFragment : Fragment() {
         }
 
         binding.tvVersion.text = "Version ${BuildConfig.VERSION_CODE}"
-        lifecycleScope.launch {
-            profileViewModel.user.collectLatest {
-                when (it) {
-                    is Resource.Loading -> {
-                        binding.progressbarSettings.visibility = View.VISIBLE
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                profileViewModel.user.collectLatest {
+                    when (it) {
+                        is Resource.Loading -> {
+                            binding.progressbarSettings.visibility = View.VISIBLE
+                        }
+
+                        is Resource.Success -> {
+                            binding.progressbarSettings.visibility = View.INVISIBLE
+                            Glide.with(requireView()).load(it.data!!.imagePath)
+                                .error(ColorDrawable(Color.BLACK)).into(binding.imageUser)
+                            binding.tvUserName.text = "${it.data.firstName} ${it.data.lastName}"
+
+                        }
+
+                        is Resource.Error -> {
+                            binding.progressbarSettings.visibility = View.INVISIBLE
+                        }
+
+                        else -> Unit
                     }
-
-                    is Resource.Success -> {
-                        binding.progressbarSettings.visibility = View.INVISIBLE
-                        Glide.with(requireView()).load(it.data!!.imagePath)
-                            .error(ColorDrawable(Color.BLACK)).into(binding.imageUser)
-                        binding.tvUserName.text = "${it.data.firstName} ${it.data.lastName}"
-
-                    }
-
-                    is Resource.Error -> {
-                        binding.progressbarSettings.visibility = View.INVISIBLE
-                    }
-
-                    else -> Unit
                 }
             }
         }

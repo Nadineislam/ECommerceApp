@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -92,21 +94,26 @@ class BillingFragment : Fragment() {
         binding.imageAddAddress.setOnClickListener {
             findNavController().navigate(R.id.action_billingFragment_to_addressFragment)
         }
-        lifecycleScope.launch {
-            billingViewModel.address.collectLatest {
-                when (it) {
-                    is Resource.Loading -> {
-                        binding.progressbarAddress.visibility = View.VISIBLE
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                billingViewModel.address.collectLatest {
+                    when (it) {
+                        is Resource.Loading -> {
+                            binding.progressbarAddress.visibility = View.VISIBLE
+                        }
+
+                        is Resource.Error -> {
+                            binding.progressbarAddress.visibility = View.GONE
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                        }
+
+                        is Resource.Success -> {
+                            binding.progressbarAddress.visibility = View.GONE
+                            addressAdapter.differList.submitList(it.data)
+                        }
+
+                        else -> Unit
                     }
-                    is Resource.Error -> {
-                        binding.progressbarAddress.visibility = View.GONE
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                    }
-                    is Resource.Success -> {
-                        binding.progressbarAddress.visibility = View.GONE
-                        addressAdapter.differList.submitList(it.data)
-                    }
-                    else -> Unit
                 }
             }
         }
@@ -116,16 +123,19 @@ class BillingFragment : Fragment() {
                     is Resource.Loading -> {
                         binding.buttonPlaceOrder.startAnimation()
                     }
+
                     is Resource.Error -> {
                         binding.buttonPlaceOrder.revertAnimation()
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
+
                     is Resource.Success -> {
                         binding.buttonPlaceOrder.revertAnimation()
                         findNavController().navigateUp()
                         Snackbar.make(requireView(), "Your order was placed", Snackbar.LENGTH_LONG)
                             .show()
                     }
+
                     else -> Unit
                 }
             }

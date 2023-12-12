@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -58,57 +60,72 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
             val bundle = Bundle().apply { putParcelable("product", product) }
             findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, bundle)
         }
-        lifecycleScope.launch {
-            viewModel.specialProducts.collectLatest {
-                when (it) {
-                    is Resource.Loading -> {
-                        showProgressBar()
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.specialProducts.collectLatest {
+                    when (it) {
+                        is Resource.Loading -> {
+                            showProgressBar()
+                        }
+
+                        is Resource.Success -> {
+                            hideProgressBar()
+                            specialProductsAdapter.differList.submitList(it.data)
+                        }
+
+                        is Resource.Error -> {
+                            hideProgressBar()
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                        }
+
+                        else -> Unit
                     }
-                    is Resource.Success -> {
-                        hideProgressBar()
-                        specialProductsAdapter.differList.submitList(it.data)
-                    }
-                    is Resource.Error -> {
-                        hideProgressBar()
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                    }
-                    else -> Unit
                 }
             }
         }
-        lifecycleScope.launch {
-            viewModel.bestDealsProducts.collectLatest {
-                when (it) {
-                    is Resource.Loading -> {
-                        showProgressBar()
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.bestDealsProducts.collectLatest {
+                    when (it) {
+                        is Resource.Loading -> {
+                            showProgressBar()
+                        }
+
+                        is Resource.Success -> {
+                            hideProgressBar()
+                            bestDealsAdapter.differList.submitList(it.data)
+                        }
+
+                        is Resource.Error -> {
+                            hideProgressBar()
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                        }
+
+                        else -> Unit
                     }
-                    is Resource.Success -> {
-                        hideProgressBar()
-                        bestDealsAdapter.differList.submitList(it.data)
-                    }
-                    is Resource.Error -> {
-                        hideProgressBar()
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                    }
-                    else -> Unit
                 }
             }
         }
-        lifecycleScope.launch{
-            viewModel.bestProducts.collectLatest {
-                when (it) {
-                    is Resource.Loading -> {
-                        binding.bottomProgressBar.visibility = View.VISIBLE
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.bestProducts.collectLatest {
+                    when (it) {
+                        is Resource.Loading -> {
+                            binding.bottomProgressBar.visibility = View.VISIBLE
+                        }
+
+                        is Resource.Success -> {
+                            binding.bottomProgressBar.visibility = View.INVISIBLE
+                            bestProductsAdapter.differList.submitList(it.data)
+                        }
+
+                        is Resource.Error -> {
+                            binding.bottomProgressBar.visibility = View.INVISIBLE
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                        }
+
+                        else -> Unit
                     }
-                    is Resource.Success -> {
-                        binding.bottomProgressBar.visibility = View.INVISIBLE
-                        bestProductsAdapter.differList.submitList(it.data)
-                    }
-                    is Resource.Error -> {
-                        binding.bottomProgressBar.visibility = View.INVISIBLE
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                    }
-                    else -> Unit
                 }
             }
         }

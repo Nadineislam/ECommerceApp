@@ -1,8 +1,6 @@
 package com.example.ecommerceapp.presentation.fragments.settings
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +11,9 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.ecommerceapp.loginRegister.data.model.User
@@ -50,38 +50,48 @@ class UserAccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launch {
-            userAccountViewModel.user.collectLatest {
-                when (it) {
-                    is Resource.Loading -> {
-                        showUserLoading()
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                userAccountViewModel.user.collectLatest {
+                    when (it) {
+                        is Resource.Loading -> {
+                            showUserLoading()
+                        }
+
+                        is Resource.Success -> {
+                            hideUserLoading()
+                        }
+
+                        is Resource.Error -> {
+                            hideUserLoading()
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                        }
+
+                        else -> Unit
                     }
-                    is Resource.Success -> {
-                        hideUserLoading()
-                    }
-                    is Resource.Error -> {
-                        hideUserLoading()
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                    }
-                    else -> Unit
                 }
             }
         }
-        lifecycleScope.launch{
-            userAccountViewModel.updateInfo.collectLatest {
-                when (it) {
-                    is Resource.Loading -> {
-                        binding.buttonSave.startAnimation()
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                userAccountViewModel.updateInfo.collectLatest {
+                    when (it) {
+                        is Resource.Loading -> {
+                            binding.buttonSave.startAnimation()
+                        }
+
+                        is Resource.Success -> {
+                            binding.buttonSave.revertAnimation()
+                            findNavController().navigateUp()
+                        }
+
+                        is Resource.Error -> {
+                            binding.buttonSave.revertAnimation()
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                        }
+
+                        else -> Unit
                     }
-                    is Resource.Success -> {
-                        binding.buttonSave.revertAnimation()
-                        findNavController().navigateUp()
-                    }
-                    is Resource.Error -> {
-                        binding.buttonSave.revertAnimation()
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                    }
-                    else -> Unit
                 }
             }
         }
@@ -99,16 +109,6 @@ class UserAccountFragment : Fragment() {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
             imageActivityResultLauncher.launch(intent)
-        }
-    }
-
-    private fun showUserInformation(user: User) {
-        binding.apply {
-            Glide.with(this@UserAccountFragment).load(user.imagePath)
-                .error(ColorDrawable(Color.BLACK)).into(imageUser)
-            edEmail.setText(user.email)
-            edFirstName.setText(user.firstName)
-            edLastName.setText(user.lastName)
         }
     }
 

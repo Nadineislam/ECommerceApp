@@ -20,19 +20,26 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AccessoryFragment:BaseCategoryFragment() {
+class AccessoryFragment : BaseCategoryFragment() {
     @Inject
     lateinit var fireStore: FirebaseFirestore
+
     @Inject
     lateinit var auth: FirebaseAuth
-    private val shoppingRepository: ShoppingRepository by lazy { ShoppingRepository(fireStore,auth) }
-    private val viewModel by viewModels<CategoryViewModel> {
-        CategoryViewModelFactory(fireStore, Category.Accessory,shoppingRepository)
+    private val shoppingRepository: ShoppingRepository by lazy {
+        ShoppingRepository(
+            fireStore,
+            auth
+        )
     }
+    private val viewModel by viewModels<CategoryViewModel> {
+        CategoryViewModelFactory(fireStore, Category.Accessory, shoppingRepository)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.offerProducts.collectLatest {
                     when (it) {
                         is Resource.Loading -> {}
@@ -41,7 +48,11 @@ class AccessoryFragment:BaseCategoryFragment() {
                         }
 
                         is Resource.Error -> {
-                            Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_LONG)
+                            Snackbar.make(
+                                requireView(),
+                                it.message.toString(),
+                                Snackbar.LENGTH_LONG
+                            )
                                 .show()
                         }
 
@@ -50,19 +61,27 @@ class AccessoryFragment:BaseCategoryFragment() {
                 }
             }
         }
-        lifecycleScope.launch {
-            viewModel.bestProducts.collectLatest {
-                when(it){
-                    is Resource.Loading->{}
-                    is Resource.Success->{
-                        bestProductsAdapter.differList.submitList(it.data)
-                    }
-                    is Resource.Error->{
-                        Snackbar.make(requireView(),it.message.toString(), Snackbar.LENGTH_LONG).show()
-                    }
-                    else-> Unit
-                }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.bestProducts.collectLatest {
+                    when (it) {
+                        is Resource.Loading -> {}
+                        is Resource.Success -> {
+                            bestProductsAdapter.differList.submitList(it.data)
+                        }
 
+                        is Resource.Error -> {
+                            Snackbar.make(
+                                requireView(),
+                                it.message.toString(),
+                                Snackbar.LENGTH_LONG
+                            ).show()
+                        }
+
+                        else -> Unit
+                    }
+
+                }
             }
         }
     }

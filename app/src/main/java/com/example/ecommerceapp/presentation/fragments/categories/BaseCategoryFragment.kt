@@ -13,18 +13,19 @@ import com.example.ecommerceapp.presentation.adapters.BestProductsAdapter
 import com.example.ecommerceapp.databinding.FragmentBaseCategoryBinding
 import com.example.ecommerceapp.utils.showBottomNavigationView
 
-open class BaseCategoryFragment:Fragment(R.layout.fragment_base_category) {
-    private lateinit var binding:FragmentBaseCategoryBinding
-    protected val offerAdapter:BestProductsAdapter by lazy {BestProductsAdapter()}
+open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
+    private lateinit var binding: FragmentBaseCategoryBinding
+    protected val offerAdapter: BestProductsAdapter by lazy { BestProductsAdapter() }
     protected val bestProductsAdapter: BestProductsAdapter by lazy { BestProductsAdapter() }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding=FragmentBaseCategoryBinding.inflate(inflater)
+        binding = FragmentBaseCategoryBinding.inflate(inflater)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpOfferRv()
@@ -37,33 +38,22 @@ open class BaseCategoryFragment:Fragment(R.layout.fragment_base_category) {
             val bundle = Bundle().apply { putParcelable("product", product) }
             findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, bundle)
         }
-//        binding.offerRv.addOnScrollListener(object :RecyclerView.OnScrollListener(){
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                if(!recyclerView.canScrollHorizontally(1)&&dx!=0){
-//                    onOfferProductsPagingRequest()
-//                }
-//            }
-//        })
-//        binding.nestedScrollViewBaseCategory.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
-//            if (v.getChildAt(0).bottom <= v.height + scrollY) {
-//               onBestProductsPagingRequest()
-//            }
-//
-//        })
     }
 
     private fun setUpBestProductsRV() {
         binding.rvBestProducts.apply {
-            layoutManager=
-               GridLayoutManager(requireContext(),2,GridLayoutManager.VERTICAL,false)
-            adapter=bestProductsAdapter}
+            layoutManager =
+                GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+            adapter = bestProductsAdapter
+        }
     }
 
     private fun setUpOfferRv() {
         binding.offerRv.apply {
-            layoutManager=
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
-            adapter=offerAdapter}
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = offerAdapter
+        }
 
     }
 
