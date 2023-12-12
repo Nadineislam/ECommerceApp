@@ -4,8 +4,8 @@ E-commerce app targets people who are looking to buy high quality furniture prod
 # Preview 
 
 https://github.com/Nadineislam/ECommerceApp/assets/96357226/5f344d0f-e968-4c3b-9eb0-a16f2f475180
-https://github.com/Nadineislam/ECommerceApp/assets/96357226/b16bd554-de0b-4c41-97f9-c16368ab68e8
 
+https://github.com/Nadineislam/ECommerceApp/assets/96357226/b16bd554-de0b-4c41-97f9-c16368ab68e8
 
 
 # Libraries and technologies used
