@@ -1,9 +1,9 @@
-package com.example.ecommerceapp.loginRegister.peresentation.viewmodels
+package com.example.ecommerceapp.login_register_feature.peresentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ecommerceapp.loginRegister.data.repository.LoginRegisterRepository
-import com.example.ecommerceapp.utils.Resource
+import com.example.ecommerceapp.login_register_feature.data.repository.LoginRegisterRepository
+import com.example.ecommerceapp.core.utils.Resource
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow

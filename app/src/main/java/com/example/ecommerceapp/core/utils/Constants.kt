@@ -1,4 +1,4 @@
-package com.example.ecommerceapp.utils
+package com.example.ecommerceapp.core.utils
 
 object Constants {
     const val USER_COLLECTION="user"

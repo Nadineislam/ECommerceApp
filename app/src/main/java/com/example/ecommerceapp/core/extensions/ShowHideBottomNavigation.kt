@@ -1,4 +1,4 @@
-package com.example.ecommerceapp.utils
+package com.example.ecommerceapp.core.extensions
 
 import android.view.View
 import androidx.fragment.app.Fragment

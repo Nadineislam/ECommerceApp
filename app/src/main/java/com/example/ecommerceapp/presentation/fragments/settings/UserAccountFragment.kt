@@ -16,9 +16,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.ecommerceapp.loginRegister.data.model.User
+import com.example.ecommerceapp.login_register_feature.data.model.User
 import com.example.ecommerceapp.databinding.FragmentUserAccountBinding
-import com.example.ecommerceapp.utils.Resource
+import com.example.ecommerceapp.core.utils.Resource
 import com.example.ecommerceapp.presentation.viewmodel.UserAccountViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

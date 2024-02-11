@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ecommerceapp.R
 import com.example.ecommerceapp.presentation.adapters.BestProductsAdapter
 import com.example.ecommerceapp.databinding.FragmentBaseCategoryBinding
-import com.example.ecommerceapp.utils.showBottomNavigationView
+import com.example.ecommerceapp.core.extensions.showBottomNavigationView
 
 open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
     private lateinit var binding: FragmentBaseCategoryBinding

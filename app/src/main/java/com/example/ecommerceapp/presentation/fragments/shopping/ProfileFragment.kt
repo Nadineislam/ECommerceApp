@@ -17,10 +17,10 @@ import com.bumptech.glide.Glide
 import com.example.ecommerceapp.BuildConfig
 import com.example.ecommerceapp.R
 import com.example.ecommerceapp.databinding.FragmentProfileBinding
-import com.example.ecommerceapp.loginRegister.peresentation.activity.LoginRegisterActivity
+import com.example.ecommerceapp.login_register_feature.peresentation.activity.LoginRegisterActivity
 import com.example.ecommerceapp.presentation.viewmodel.ProfileViewModel
-import com.example.ecommerceapp.utils.Resource
-import com.example.ecommerceapp.utils.showBottomNavigationView
+import com.example.ecommerceapp.core.utils.Resource
+import com.example.ecommerceapp.core.extensions.showBottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

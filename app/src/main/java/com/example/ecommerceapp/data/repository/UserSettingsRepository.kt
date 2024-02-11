@@ -5,10 +5,10 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.provider.MediaStore
 import com.example.ecommerceapp.data.Address
-import com.example.ecommerceapp.loginRegister.data.model.User
-import com.example.ecommerceapp.utils.RegisterValidation
-import com.example.ecommerceapp.utils.Resource
-import com.example.ecommerceapp.utils.validateEmail
+import com.example.ecommerceapp.login_register_feature.data.model.User
+import com.example.ecommerceapp.core.utils.RegisterValidation
+import com.example.ecommerceapp.core.utils.Resource
+import com.example.ecommerceapp.core.utils.validateEmail
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference

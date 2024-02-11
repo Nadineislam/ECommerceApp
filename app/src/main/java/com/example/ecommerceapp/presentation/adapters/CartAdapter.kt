@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.ecommerceapp.data.CartProduct
 import com.example.ecommerceapp.databinding.CartProductItemBinding
-import com.example.ecommerceapp.helper.getProductPrice
+import com.example.ecommerceapp.core.extensions.getProductPrice
 
 class CartAdapter : RecyclerView.Adapter<CartAdapter.CartProductViewHolder>() {
     inner class CartProductViewHolder(val binding: CartProductItemBinding) :

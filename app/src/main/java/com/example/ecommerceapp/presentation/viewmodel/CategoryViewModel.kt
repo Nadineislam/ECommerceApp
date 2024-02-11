@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.ecommerceapp.data.Category
 import com.example.ecommerceapp.data.Product
 import com.example.ecommerceapp.data.repository.ShoppingRepository
-import com.example.ecommerceapp.utils.Resource
+import com.example.ecommerceapp.core.utils.Resource
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

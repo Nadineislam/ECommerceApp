@@ -12,7 +12,7 @@ import com.example.ecommerceapp.presentation.adapters.BillingProductsAdapter
 import com.example.ecommerceapp.data.OrderStatus
 import com.example.ecommerceapp.data.getOrderStatus
 import com.example.ecommerceapp.databinding.FragmentOrderDetailBinding
-import com.example.ecommerceapp.utils.VerticalItemDecoration
+import com.example.ecommerceapp.core.utils.VerticalItemDecoration
 
 class OrderDetailFragment:Fragment() {
     private lateinit var binding:FragmentOrderDetailBinding

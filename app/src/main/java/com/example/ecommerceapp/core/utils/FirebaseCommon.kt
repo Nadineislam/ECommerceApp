@@ -1,10 +1,10 @@
-package com.example.ecommerceapp.firebase
+package com.example.ecommerceapp.core.utils
 
 import com.example.ecommerceapp.data.CartProduct
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class FirebaseCommon(private val fireStore: FirebaseFirestore,private val firebaseAuth: FirebaseAuth) {
+class FirebaseCommon(private val fireStore: FirebaseFirestore, firebaseAuth: FirebaseAuth) {
     private val cartCollection=fireStore.collection("user").document(firebaseAuth.uid.toString())
         .collection("cart")
     fun addProductToCart(cartProduct: CartProduct, onResult: (CartProduct?, Exception?)->Unit){

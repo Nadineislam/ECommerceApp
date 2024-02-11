@@ -20,8 +20,8 @@ import com.example.ecommerceapp.presentation.adapters.BestDealsAdapter
 import com.example.ecommerceapp.presentation.adapters.BestProductsAdapter
 import com.example.ecommerceapp.presentation.adapters.SpecialProductsAdapter
 import com.example.ecommerceapp.databinding.FragmentMainCategoryBinding
-import com.example.ecommerceapp.utils.Resource
-import com.example.ecommerceapp.utils.showBottomNavigationView
+import com.example.ecommerceapp.core.utils.Resource
+import com.example.ecommerceapp.core.extensions.showBottomNavigationView
 import com.example.ecommerceapp.presentation.viewmodel.MainCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

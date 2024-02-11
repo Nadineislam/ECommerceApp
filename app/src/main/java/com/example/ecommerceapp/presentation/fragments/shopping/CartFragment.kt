@@ -16,9 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ecommerceapp.R
 import com.example.ecommerceapp.presentation.adapters.CartAdapter
 import com.example.ecommerceapp.databinding.FragmentCartBinding
-import com.example.ecommerceapp.firebase.FirebaseCommon
-import com.example.ecommerceapp.utils.Resource
-import com.example.ecommerceapp.utils.VerticalItemDecoration
+import com.example.ecommerceapp.core.utils.FirebaseCommon
+import com.example.ecommerceapp.core.utils.Resource
+import com.example.ecommerceapp.core.utils.VerticalItemDecoration
 import com.example.ecommerceapp.presentation.viewmodel.CartViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

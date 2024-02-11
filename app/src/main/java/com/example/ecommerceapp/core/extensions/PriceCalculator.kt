@@ -1,4 +1,4 @@
-package com.example.ecommerceapp.helper
+package com.example.ecommerceapp.core.extensions
 
 fun Float?.getProductPrice(price:Float):Float{
     //this -.percentage

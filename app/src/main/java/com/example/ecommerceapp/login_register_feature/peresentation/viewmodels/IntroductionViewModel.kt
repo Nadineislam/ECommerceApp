@@ -1,10 +1,10 @@
-package com.example.ecommerceapp.loginRegister.peresentation.viewmodels
+package com.example.ecommerceapp.login_register_feature.peresentation.viewmodels
 
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ecommerceapp.R
-import com.example.ecommerceapp.utils.Constants.INTRODUCTION_KEY
+import com.example.ecommerceapp.core.utils.Constants.INTRODUCTION_KEY
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class IntroductionViewModel @Inject constructor(
     private val sharedPreferences: SharedPreferences,
-    private val firebaseAuth: FirebaseAuth
+    firebaseAuth: FirebaseAuth
 ) : ViewModel() {
     private val _navigate = MutableStateFlow(0)
     val navigate: StateFlow<Int> = _navigate

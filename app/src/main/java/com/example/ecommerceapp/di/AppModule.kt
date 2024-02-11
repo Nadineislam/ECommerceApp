@@ -2,9 +2,8 @@ package com.example.ecommerceapp.di
 
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
-import com.example.ecommerceapp.CommerceApplication
-import com.example.ecommerceapp.firebase.FirebaseCommon
-import com.example.ecommerceapp.utils.Constants.INTRODUCTION_SHARED_PREFERENCES
+import com.example.ecommerceapp.core.utils.FirebaseCommon
+import com.example.ecommerceapp.core.utils.Constants.INTRODUCTION_SHARED_PREFERENCES
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore

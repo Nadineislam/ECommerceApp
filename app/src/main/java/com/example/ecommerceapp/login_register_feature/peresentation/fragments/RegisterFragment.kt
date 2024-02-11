@@ -1,4 +1,4 @@
-package com.example.ecommerceapp.loginRegister.peresentation.fragments
+package com.example.ecommerceapp.login_register_feature.peresentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,11 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.ecommerceapp.R
-import com.example.ecommerceapp.loginRegister.data.model.User
+import com.example.ecommerceapp.login_register_feature.data.model.User
 import com.example.ecommerceapp.databinding.FragmentRegisterBinding
-import com.example.ecommerceapp.utils.RegisterValidation
-import com.example.ecommerceapp.utils.Resource
-import com.example.ecommerceapp.loginRegister.peresentation.viewmodels.RegisterViewModel
+import com.example.ecommerceapp.core.utils.RegisterValidation
+import com.example.ecommerceapp.core.utils.Resource
+import com.example.ecommerceapp.login_register_feature.peresentation.viewmodels.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

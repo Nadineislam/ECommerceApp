@@ -1,8 +1,8 @@
-package com.example.ecommerceapp.loginRegister.data.repository
+package com.example.ecommerceapp.login_register_feature.data.repository
 
-import com.example.ecommerceapp.loginRegister.data.model.User
-import com.example.ecommerceapp.utils.Constants.USER_COLLECTION
-import com.example.ecommerceapp.utils.Resource
+import com.example.ecommerceapp.login_register_feature.data.model.User
+import com.example.ecommerceapp.core.utils.Constants.USER_COLLECTION
+import com.example.ecommerceapp.core.utils.Resource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore

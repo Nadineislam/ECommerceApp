@@ -1,4 +1,4 @@
-package com.example.ecommerceapp.loginRegister.peresentation.activity
+package com.example.ecommerceapp.login_register_feature.peresentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

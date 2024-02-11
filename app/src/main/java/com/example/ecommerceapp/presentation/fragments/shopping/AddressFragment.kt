@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.ecommerceapp.data.Address
 import com.example.ecommerceapp.databinding.FragmentAddressBinding
-import com.example.ecommerceapp.utils.Resource
+import com.example.ecommerceapp.core.utils.Resource
 import com.example.ecommerceapp.presentation.viewmodel.AddressViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

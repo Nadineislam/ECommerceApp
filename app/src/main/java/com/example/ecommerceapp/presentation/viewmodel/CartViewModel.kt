@@ -3,9 +3,9 @@ package com.example.ecommerceapp.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ecommerceapp.data.CartProduct
-import com.example.ecommerceapp.firebase.FirebaseCommon
-import com.example.ecommerceapp.helper.getProductPrice
-import com.example.ecommerceapp.utils.Resource
+import com.example.ecommerceapp.core.utils.FirebaseCommon
+import com.example.ecommerceapp.core.extensions.getProductPrice
+import com.example.ecommerceapp.core.utils.Resource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore

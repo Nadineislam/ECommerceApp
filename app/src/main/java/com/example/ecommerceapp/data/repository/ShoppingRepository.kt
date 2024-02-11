@@ -3,7 +3,7 @@ package com.example.ecommerceapp.data.repository
 import com.example.ecommerceapp.data.Address
 import com.example.ecommerceapp.data.Order
 import com.example.ecommerceapp.data.Product
-import com.example.ecommerceapp.utils.Resource
+import com.example.ecommerceapp.core.utils.Resource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await

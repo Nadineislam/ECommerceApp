@@ -18,8 +18,8 @@ import com.example.ecommerceapp.presentation.adapters.SizesAdapter
 import com.example.ecommerceapp.presentation.adapters.ViewPager2ImagesAdapter
 import com.example.ecommerceapp.data.CartProduct
 import com.example.ecommerceapp.databinding.FragmentProductDetailsBinding
-import com.example.ecommerceapp.utils.Resource
-import com.example.ecommerceapp.utils.hideBottomNavigationView
+import com.example.ecommerceapp.core.utils.Resource
+import com.example.ecommerceapp.core.extensions.hideBottomNavigationView
 import com.example.ecommerceapp.presentation.viewmodel.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

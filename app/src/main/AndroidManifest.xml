@@ -20,7 +20,7 @@
 
         </activity>
         <activity
-            android:name="com.example.ecommerceapp.loginRegister.peresentation.activity.LoginRegisterActivity"
+            android:name="com.example.ecommerceapp.login_register_feature.peresentation.activity.LoginRegisterActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

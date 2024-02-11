@@ -1,10 +1,14 @@
-package com.example.ecommerceapp.loginRegister.peresentation.viewmodels
+package com.example.ecommerceapp.login_register_feature.peresentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ecommerceapp.loginRegister.data.model.User
-import com.example.ecommerceapp.loginRegister.data.repository.LoginRegisterRepository
-import com.example.ecommerceapp.utils.*
+import com.example.ecommerceapp.core.utils.RegisterFieldState
+import com.example.ecommerceapp.core.utils.RegisterValidation
+import com.example.ecommerceapp.core.utils.Resource
+import com.example.ecommerceapp.core.utils.validateEmail
+import com.example.ecommerceapp.core.utils.validatePassword
+import com.example.ecommerceapp.login_register_feature.data.model.User
+import com.example.ecommerceapp.login_register_feature.data.repository.LoginRegisterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow

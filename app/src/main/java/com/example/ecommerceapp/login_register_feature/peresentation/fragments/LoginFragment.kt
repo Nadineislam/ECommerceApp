@@ -1,4 +1,4 @@
-package com.example.ecommerceapp.loginRegister.peresentation.fragments
+package com.example.ecommerceapp.login_register_feature.peresentation.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,9 +13,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.ecommerceapp.R
 import com.example.ecommerceapp.presentation.activities.ShoppingActivity
 import com.example.ecommerceapp.databinding.FragmentLoginBinding
-import com.example.ecommerceapp.loginRegister.dialog.setupBottomSheetDialog
-import com.example.ecommerceapp.utils.Resource
-import com.example.ecommerceapp.loginRegister.peresentation.viewmodels.LoginViewModel
+import com.example.ecommerceapp.core.extensions.setupBottomSheetDialog
+import com.example.ecommerceapp.core.utils.Resource
+import com.example.ecommerceapp.login_register_feature.peresentation.viewmodels.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

@@ -1,7 +1,7 @@
 package com.example.ecommerceapp.data.repository
 
 import com.example.ecommerceapp.data.CartProduct
-import com.example.ecommerceapp.firebase.FirebaseCommon
+import com.example.ecommerceapp.core.utils.FirebaseCommon
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await

@@ -10,7 +10,7 @@ import com.example.ecommerceapp.data.Category
 import com.example.ecommerceapp.data.repository.ShoppingRepository
 import com.example.ecommerceapp.presentation.viewmodel.CategoryViewModel
 import com.example.ecommerceapp.presentation.viewmodel.CategoryViewModelFactory
-import com.example.ecommerceapp.utils.Resource
+import com.example.ecommerceapp.core.utils.Resource
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

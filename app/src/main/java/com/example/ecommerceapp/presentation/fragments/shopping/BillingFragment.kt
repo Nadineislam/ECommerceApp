@@ -23,8 +23,8 @@ import com.example.ecommerceapp.data.CartProduct
 import com.example.ecommerceapp.data.Order
 import com.example.ecommerceapp.data.OrderStatus
 import com.example.ecommerceapp.databinding.FragmentBillingBinding
-import com.example.ecommerceapp.utils.HorizontalItemDecoration
-import com.example.ecommerceapp.utils.Resource
+import com.example.ecommerceapp.core.utils.HorizontalItemDecoration
+import com.example.ecommerceapp.core.utils.Resource
 import com.example.ecommerceapp.presentation.viewmodel.BillingViewModel
 import com.example.ecommerceapp.presentation.viewmodel.OrderViewModel
 import com.google.android.material.snackbar.Snackbar
