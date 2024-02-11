@@ -3,26 +3,32 @@ package com.example.ecommerceapp.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ecommerceapp.data.Product
-import com.example.ecommerceapp.data.repository.ShoppingRepository
 import com.example.ecommerceapp.core.utils.Resource
+import com.example.ecommerceapp.domain.use_case.BestDealsUseCase
+import com.example.ecommerceapp.domain.use_case.GettingBestProductsUseCase
+import com.example.ecommerceapp.domain.use_case.SpecialProductsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainCategoryViewModel @Inject constructor(private val shoppingRepository: ShoppingRepository) :
+class MainCategoryViewModel @Inject constructor(
+    private val getBestProductsUseCase: GettingBestProductsUseCase,
+    private val bestDealsUseCase: BestDealsUseCase,
+    private val specialProductsUseCase: SpecialProductsUseCase
+) :
     ViewModel() {
     private val _specialProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
-    val specialProducts: StateFlow<Resource<List<Product>>> = _specialProducts
+    val specialProducts = _specialProducts.asStateFlow()
 
     private val _bestDealsProducts =
         MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
-    val bestDealsProducts: StateFlow<Resource<List<Product>>> = _bestDealsProducts
+    val bestDealsProducts = _bestDealsProducts.asStateFlow()
 
     private val _bestProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
-    val bestProducts: StateFlow<Resource<List<Product>>> = _bestProducts
+    val bestProducts = _bestProducts.asStateFlow()
 
     init {
         getSpecialProducts()
@@ -32,24 +38,22 @@ class MainCategoryViewModel @Inject constructor(private val shoppingRepository: 
 
     fun getBestProducts() {
         viewModelScope.launch {
-            _bestProducts.value = Resource.Loading()
+            _bestProducts.emit(Resource.Loading())
             try {
-                val bestProductsList = shoppingRepository.getBestProducts()
-                _bestProducts.value = Resource.Success(bestProductsList)
+                _bestProducts.emit(Resource.Success(getBestProductsUseCase()))
             } catch (e: Exception) {
-                _bestProducts.value = Resource.Error(e.message.toString())
+                _bestProducts.emit(Resource.Error(e.message.toString()))
             }
         }
     }
 
     private fun getBestDealsProducts() {
         viewModelScope.launch {
-            _bestDealsProducts.value = Resource.Loading()
+            _bestDealsProducts.emit(Resource.Loading())
             try {
-                val bestDealsProductsList = shoppingRepository.getBestDealsProducts()
-                _bestDealsProducts.value = Resource.Success(bestDealsProductsList)
+                _bestDealsProducts.emit(Resource.Success(bestDealsUseCase()))
             } catch (e: Exception) {
-                _bestDealsProducts.value = Resource.Error(e.message.toString())
+                _bestDealsProducts.emit(Resource.Error(e.message.toString()))
             }
         }
     }
@@ -58,10 +62,9 @@ class MainCategoryViewModel @Inject constructor(private val shoppingRepository: 
         viewModelScope.launch {
             _specialProducts.value = Resource.Loading()
             try {
-                val specialProductsList = shoppingRepository.getSpecialProducts()
-                _specialProducts.value = Resource.Success(specialProductsList)
+                _specialProducts.emit(Resource.Success(specialProductsUseCase()))
             } catch (e: Exception) {
-                _specialProducts.value = Resource.Error(e.message.toString())
+                _specialProducts.emit(Resource.Error(e.message.toString()))
             }
         }
     }

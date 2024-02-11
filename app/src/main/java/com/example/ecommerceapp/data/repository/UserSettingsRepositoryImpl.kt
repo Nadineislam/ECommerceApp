@@ -9,6 +9,7 @@ import com.example.ecommerceapp.login_register_feature.data.model.User
 import com.example.ecommerceapp.core.utils.RegisterValidation
 import com.example.ecommerceapp.core.utils.Resource
 import com.example.ecommerceapp.core.utils.validateEmail
+import com.example.ecommerceapp.domain.repository.UserSettingsRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
@@ -18,12 +19,12 @@ import java.io.ByteArrayOutputStream
 import java.util.UUID
 import javax.inject.Inject
 
-class UserSettingsRepository @Inject constructor(
+class UserSettingsRepositoryImpl @Inject constructor(
     private val fireStore: FirebaseFirestore,
     private val auth: FirebaseAuth,
     private val storage: StorageReference, @ApplicationContext private val context: Context
-) {
-    suspend fun getUser(): Resource<User> {
+) : UserSettingsRepository {
+    override suspend fun getUser(): Resource<User> {
         return try {
             val documentSnapshot = fireStore.collection("user").document(auth.uid!!).get().await()
             val user = documentSnapshot.toObject(User::class.java)
@@ -33,7 +34,7 @@ class UserSettingsRepository @Inject constructor(
         }
     }
 
-    suspend fun updateUser(user: User, imageUri: Uri?): Resource<User> {
+    override suspend fun updateUser(user: User, imageUri: Uri?): Resource<User> {
         val areInputsValidate = validateEmail(user.email) is RegisterValidation.Success
                 && user.firstName.trim().isNotEmpty()
                 && user.lastName.trim().isNotEmpty()
@@ -53,13 +54,9 @@ class UserSettingsRepository @Inject constructor(
         }
     }
 
-    suspend fun getUser(userId: String): User {
+    override suspend fun getUser(userId: String): User {
         val documentSnapshot = fireStore.collection("user").document(userId).get().await()
         return documentSnapshot.toObject(User::class.java)!!
-    }
-
-    fun logOut() {
-        auth.signOut()
     }
 
     private suspend fun saveUserInformationWithNewImage(user: User, imageUri: Uri): User {
@@ -91,7 +88,7 @@ class UserSettingsRepository @Inject constructor(
         }.await()
     }
 
-    suspend fun addAddress(address: Address) {
+    override suspend fun addAddress(address: Address) {
         val userAddressCollection = fireStore.collection("user").document(auth.uid!!)
             .collection("address")
         userAddressCollection.add(address).await()

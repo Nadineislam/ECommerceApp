@@ -21,15 +21,16 @@ class CartViewModel @Inject constructor(
 ) : ViewModel() {
     private val _cartProducts =
         MutableStateFlow<Resource<List<CartProduct>>>(Resource.Unspecified())
-    val cartProducts: StateFlow<Resource<List<CartProduct>>> = _cartProducts
+    val cartProducts = _cartProducts.asStateFlow()
     private val _deleteDialog = MutableSharedFlow<CartProduct>()
-    val deleteDialog: SharedFlow<CartProduct> = _deleteDialog
+    val deleteDialog = _deleteDialog.asSharedFlow()
     private var cartProductDocuments = emptyList<DocumentSnapshot>()
     val productPrice = cartProducts.map {
         when (it) {
             is Resource.Success -> {
                 calculatePrice(it.data!!)
             }
+
             else -> null
         }
     }

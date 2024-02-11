@@ -4,16 +4,17 @@ import com.example.ecommerceapp.data.Address
 import com.example.ecommerceapp.data.Order
 import com.example.ecommerceapp.data.Product
 import com.example.ecommerceapp.core.utils.Resource
+import com.example.ecommerceapp.domain.repository.ShoppingRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class ShoppingRepository @Inject constructor(
+class ShoppingRepositoryImpl @Inject constructor(
     private val fireStore: FirebaseFirestore,
     private val auth: FirebaseAuth
-) {
-    suspend fun fetchOfferProducts(category: String): Resource<List<Product>> {
+) :ShoppingRepository{
+   override suspend fun fetchOfferProducts(category: String): Resource<List<Product>> {
         return try {
             val querySnapshot = fireStore.collection("Products")
                 .whereEqualTo("category", category)
@@ -26,7 +27,7 @@ class ShoppingRepository @Inject constructor(
         }
     }
 
-    suspend fun fetchBestProducts(category: String): Resource<List<Product>> {
+    override suspend fun fetchBestProducts(category: String): Resource<List<Product>> {
         return try {
             val querySnapshot = fireStore.collection("Products")
                 .whereEqualTo("category", category)
@@ -40,7 +41,7 @@ class ShoppingRepository @Inject constructor(
         }
     }
 
-    suspend fun getBestProducts(): List<Product> {
+   override suspend fun getBestProducts(): List<Product> {
         val pagingInfo = PagingInfo()
         val productsCollection = fireStore.collection("Products")
         val querySnapshot = productsCollection.limit(pagingInfo.bestProductsPage * 9).get().await()
@@ -51,18 +52,18 @@ class ShoppingRepository @Inject constructor(
         return bestProductsList
     }
 
-    suspend fun getBestDealsProducts(): List<Product> {
+   override suspend fun getBestDealsProducts(): List<Product> {
         val productsCollection = fireStore.collection("Products")
         val querySnapshot = productsCollection.whereEqualTo("category", "Collections").get().await()
         return querySnapshot.toObjects(Product::class.java)
     }
 
-    suspend fun getSpecialProducts(): List<Product> {
+    override suspend fun getSpecialProducts(): List<Product> {
         val productsCollection = fireStore.collection("Products")
         val querySnapshot = productsCollection.whereEqualTo("category", "Chair").get().await()
         return querySnapshot.toObjects(Product::class.java)
     }
-    suspend fun getAllOrders(): List<Order> {
+    override suspend fun getAllOrders(): List<Order> {
         val querySnapshot = fireStore.collection("user")
             .document(auth.uid!!)
             .collection("orders")
@@ -70,7 +71,7 @@ class ShoppingRepository @Inject constructor(
             .await()
         return querySnapshot.toObjects(Order::class.java)
     }
-    suspend fun getUserAddresses(): List<Address> {
+    override suspend fun getUserAddresses(): List<Address> {
         val querySnapshot = fireStore.collection("user")
             .document(auth.uid!!)
             .collection("address")
@@ -78,7 +79,7 @@ class ShoppingRepository @Inject constructor(
             .await()
         return querySnapshot.toObjects(Address::class.java)
     }
-    suspend fun placeOrder(order: Order) {
+   override suspend fun placeOrder(order: Order) {
         val batch = fireStore.batch()
 
         val userOrderRef = fireStore.collection("user")

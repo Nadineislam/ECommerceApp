@@ -2,6 +2,7 @@ package com.example.ecommerceapp.data.repository
 
 import com.example.ecommerceapp.data.CartProduct
 import com.example.ecommerceapp.core.utils.FirebaseCommon
+import com.example.ecommerceapp.domain.repository.CartRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
@@ -10,12 +11,12 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class CartRepository @Inject constructor(
+class CartRepositoryImpl @Inject constructor(
     private val fireStore: FirebaseFirestore,
     private val firebaseAuth: FirebaseAuth,
     private val fireBaseCommon: FirebaseCommon
-) {
-    suspend fun addOrUpdateCartProduct(cartProduct: CartProduct): CartProduct {
+) : CartRepository {
+    override suspend fun addOrUpdateCartProduct(cartProduct: CartProduct): CartProduct {
         val documentSnapshot = fireStore.collection("user")
             .document(firebaseAuth.uid.toString())
             .collection("cart")
@@ -35,7 +36,7 @@ class CartRepository @Inject constructor(
         }
     }
 
-    private suspend fun addNewProduct(cartProduct: CartProduct): CartProduct {
+    override suspend fun addNewProduct(cartProduct: CartProduct): CartProduct {
         return suspendCoroutine { continuation ->
             fireBaseCommon.addProductToCart(cartProduct) { addedProduct, exception ->
                 if (exception != null) {
@@ -51,7 +52,10 @@ class CartRepository @Inject constructor(
         }
     }
 
-    private suspend fun increaseQuantity(documentId: String, cartProduct: CartProduct): CartProduct {
+    override suspend fun increaseQuantity(
+        documentId: String,
+        cartProduct: CartProduct
+    ): CartProduct {
         return suspendCoroutine { continuation ->
             fireBaseCommon.increaseQuantity(documentId) { updatedDocumentId, exception ->
                 if (exception != null) {

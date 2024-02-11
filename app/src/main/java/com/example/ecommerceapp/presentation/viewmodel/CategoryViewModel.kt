@@ -4,23 +4,23 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ecommerceapp.data.Category
 import com.example.ecommerceapp.data.Product
-import com.example.ecommerceapp.data.repository.ShoppingRepository
 import com.example.ecommerceapp.core.utils.Resource
-import com.google.firebase.firestore.FirebaseFirestore
+import com.example.ecommerceapp.domain.use_case.BestProductsUseCase
+import com.example.ecommerceapp.domain.use_case.OfferProductsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class CategoryViewModel(
-    private val fireStore: FirebaseFirestore,
     private val category: Category,
-    private val shoppingRepository: ShoppingRepository
+    private val offerProductsUseCase: OfferProductsUseCase,
+    private val bestProductsUseCase: BestProductsUseCase
 ) : ViewModel() {
     private val _offerProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
-    val offerProducts: StateFlow<Resource<List<Product>>> = _offerProducts
+    val offerProducts = _offerProducts.asStateFlow()
 
     private val _bestProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
-    val bestProducts: StateFlow<Resource<List<Product>>> = _bestProducts
+    val bestProducts = _bestProducts.asStateFlow()
 
     init {
         fetchBestProducts()
@@ -30,16 +30,14 @@ class CategoryViewModel(
     private fun fetchOfferProducts() {
         viewModelScope.launch {
             _offerProducts.emit(Resource.Loading())
-            val result = shoppingRepository.fetchOfferProducts(category.category)
-            _offerProducts.emit(result)
+            _offerProducts.emit(offerProductsUseCase(category.category))
         }
     }
 
     private fun fetchBestProducts() {
         viewModelScope.launch {
             _bestProducts.emit(Resource.Loading())
-            val result=shoppingRepository.fetchBestProducts(category.category)
-            _bestProducts.emit(result)
+            _bestProducts.emit(bestProductsUseCase(category.category))
         }
     }
 

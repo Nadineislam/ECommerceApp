@@ -7,8 +7,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.ecommerceapp.data.Category
-import com.example.ecommerceapp.data.repository.ShoppingRepository
 import com.example.ecommerceapp.core.utils.Resource
+import com.example.ecommerceapp.domain.use_case.BestProductsUseCase
+import com.example.ecommerceapp.domain.use_case.OfferProductsUseCase
 import com.example.ecommerceapp.presentation.viewmodel.CategoryViewModel
 import com.example.ecommerceapp.presentation.viewmodel.CategoryViewModelFactory
 import com.google.android.material.snackbar.Snackbar
@@ -26,14 +27,14 @@ class CupboardFragment : BaseCategoryFragment() {
 
     @Inject
     lateinit var auth: FirebaseAuth
-    private val shoppingRepository: ShoppingRepository by lazy {
-        ShoppingRepository(
-            fireStore,
-            auth
-        )
-    }
+
+    @Inject
+    lateinit var offerProductsUseCase: OfferProductsUseCase
+
+    @Inject
+    lateinit var bestProductsUseCase: BestProductsUseCase
     private val viewModel by viewModels<CategoryViewModel> {
-        CategoryViewModelFactory(fireStore, Category.Cupboard, shoppingRepository)
+        CategoryViewModelFactory(Category.Cupboard, offerProductsUseCase, bestProductsUseCase)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -4,26 +4,28 @@ import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ecommerceapp.data.repository.UserSettingsRepository
 import com.example.ecommerceapp.login_register_feature.data.model.User
 import com.example.ecommerceapp.core.utils.Resource
+import com.example.ecommerceapp.domain.use_case.GetUserUseCase
+import com.example.ecommerceapp.domain.use_case.UserUpdatesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class UserAccountViewModel @Inject constructor(
-    private val userSettingsRepository: UserSettingsRepository,
+    private val getUserUseCase: GetUserUseCase,
+    private val userUpdatesUseCase: UserUpdatesUseCase,
     app: Application
 ) : AndroidViewModel(app) {
 
     private val _user = MutableStateFlow<Resource<User>>(Resource.Unspecified())
-    val user: StateFlow<Resource<User>> = _user
+    val user = _user.asStateFlow()
 
     private val _updateInfo = MutableStateFlow<Resource<User>>(Resource.Unspecified())
-    val updateInfo: StateFlow<Resource<User>> = _updateInfo
+    val updateInfo = _updateInfo.asStateFlow()
 
     init {
         getUser()
@@ -31,16 +33,14 @@ class UserAccountViewModel @Inject constructor(
 
     private fun getUser() {
         viewModelScope.launch {
-            _user.value = Resource.Loading()
-            val result = userSettingsRepository.getUser()
-            _user.value = result
+            _user.emit(Resource.Loading())
+            _user.emit(getUserUseCase())
         }
     }
 
     fun updateUser(user: User, imageUri: Uri?) {
         viewModelScope.launch {
-            val result = userSettingsRepository.updateUser(user, imageUri)
-            _updateInfo.value = result
+            _updateInfo.emit(userUpdatesUseCase(user, imageUri))
         }
     }
 }
