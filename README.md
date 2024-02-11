@@ -2,8 +2,10 @@
 E-commerce app targets people who are looking to buy high quality furniture products for their house e.g : cupboards, chairs. And it targets merchants that sell furniture products to enable them to spread their markets and put their products online so everyone can check them out and order them.
 
 # Preview 
-![163694236-4e1657e8-d24d-4da6-a451-4c71f68d1cec](https://github.com/Nadineislam/ECommerceApp/assets/96357226/2f16c32b-2963-4be1-a29d-6c6e5f0a825e)
-![163694361-6d33565a-9178-4ed7-873e-e8def0160166](https://github.com/Nadineislam/ECommerceApp/assets/96357226/750b3a40-2e84-4bab-8759-1d8f667fd8b9)
+
+https://github.com/Nadineislam/ECommerceApp/assets/96357226/5f344d0f-e968-4c3b-9eb0-a16f2f475180
+
+https://github.com/Nadineislam/ECommerceApp/assets/96357226/b16bd554-de0b-4c41-97f9-c16368ab68e8
 
 
 # Libraries and technologies used
@@ -15,3 +17,4 @@ E-commerce app targets people who are looking to buy high quality furniture prod
 * Coroutines : do some code in the background. <br />
 * View Binding : instead of inflating views manually view binding will take care of that. <br />
 * Glide : Catch images and load them in imageView. <br />
+* Dependency Injection (Hilt) : Managing object dependencies and providing them to classes that require them, promoting code reusability and decoupling. <br />
